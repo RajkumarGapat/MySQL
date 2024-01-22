@@ -1,0 +1,27 @@
+create database emp;
+use emp;
+create table Employee_data(emp_id int primary key auto_increment,emp_name varchar(20),
+emp_adm_date date,city varchar(10) default 'Delhi',age int check(age>=25));
+insert into Employee_data(emp_name,emp_adm_date,age) values('Prashant','2023-04-26',28);
+select *from Employee_data;
+alter table Employee_data rename column emp_adm_date to adm_date;
+alter table Employee_data auto_increment=100;
+insert into Employee_data(emp_name,emp_adm_date,age) values('Raj','2023-04-25',26);
+insert into Employee_data(emp_name,adm_date,age) values('Abc','2022-01-21',25);
+select *from Employee_data;
+desc Employee_data;
+alter table Employee_data add column dept varchar(20);
+update Employee_data set dept = 'IT' where emp_id=1;
+update Employee_data set dept = 'Testing' where emp_id=2;
+update Employee_data set dept = 'Sales' where emp_id=100;
+update Employee_data set dept = 'Adminstration' where emp_id=101;
+select *from Employee_data;
+select * from Employee_data where dept like 'A%';
+select * from Employee_data where dept like '%A%';
+select year (adm_date) as year_of_adm_date from employee_data;
+select adm_date, year (adm_date) as year_of_adm_date from Employee_data;
+select adm_date, month (adm_date) as month_of_adm_date from Employee_data;
+select adm_date, day (adm_date) as day_of_adm_date from Employee_data;
+select distinct city from Employee_data;
+select emp_id,Emp_name,dept,city from Employee_data where dept = 'IT' and city = 'delhi';
+select emp_id,Emp_name,dept,city,age from Employee_data where dept = 'Adminstration' and age>=25;
